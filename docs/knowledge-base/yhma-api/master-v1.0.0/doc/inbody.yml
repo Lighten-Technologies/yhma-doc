@@ -86,7 +86,7 @@ endpoints:
         id:
           type: string
           m/o: mandatory
-          description: 문서 타입을 입력하세요. [drug, disease]
+          description: 검색을 원하는 아이디를 입력하세요.
         labels:
           type: stringArray
           m/o: optional
