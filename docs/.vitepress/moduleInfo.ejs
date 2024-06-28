@@ -1,0 +1,9 @@
+# <%= moduleInfo.name %>
+
+<%= moduleInfo.description %>
+
+## Versions
+
+<% versionList.forEach(function(version) { %>
+- [<%= version %>](/api-doc/<%=moduleName%>/<%= version %>/index.md)
+<% }); %>

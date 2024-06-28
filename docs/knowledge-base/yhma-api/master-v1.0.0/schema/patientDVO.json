@@ -1,0 +1,17 @@
+{
+  "_id": "string",
+  "pat_id": "string",
+  "pat_name": "string",
+  "pat_sex": "string",
+  "pat_birth": "YYYY-MM-DD",
+  "pat_email": "string",
+  "pat_phone": "string",
+  "pat_address": "string",
+  "pat_password": "string",
+  "editBy": "string",
+  "isReport": true,
+  "pat_private_confirm_date": "YYYY-MM-DD",
+  "loginedAt": "YYYY-MM-DD HH:mm:ss",
+  "createdAt": "YYYY-MM-DD HH:mm:ss",
+  "updatedAt": "YYYY-MM-DD HH:mm:ss"
+}

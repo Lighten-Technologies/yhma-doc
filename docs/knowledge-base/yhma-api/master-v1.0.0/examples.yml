@@ -1,0 +1,72 @@
+- name: /api/lighten/finedrop2/v1/devices
+  method: GET
+  version: master-v1.0.0
+  samples:
+    - name: 240618151023-Sample
+      request: |
+        {
+          method: 'get',
+          url: 'http://finenurse.co.kr:80/api/finenurse/v1/device',
+          headers: { }
+        }
+      response: |
+        {
+          "devices": [
+            {
+              "id": 1,
+              "name": "Device 1"
+            },
+            {
+              "id": 2,
+              "name": "Device 2"
+            }
+          ]
+        }
+
+    - name: 240618151023-Sample
+      request:
+        headers:
+          Content-Type: application/json
+        body: {}
+      response:
+        success: |
+          {
+            "devices": [
+              {
+                "id": 3,
+                "name": "Device 3"
+              },
+              {
+                "id": 4,
+                "name": "Device 4"
+              }
+            ]
+          }
+        error: |
+          {
+            "error": "Something went wrong"
+          }
+
+- name: master-v1.0.0/api/lighten/finedrop2/v1/devices
+  method: POST
+  path: /api/lighten/finedrop2/v1/devices
+  description: 새로운 장치를 생성합니다.
+  samples:
+    - name: Sample 1
+      request:
+        headers:
+          Content-Type: application/json
+        body: |
+          {
+            "name": "New Device"
+          }
+      response:
+        success: |
+          {
+            "id": 3,
+            "name": "New Device"
+          }
+        error: |
+          {
+            "error": "Invalid input"
+          }

@@ -1,0 +1,128 @@
+endpoints:
+  - method: GET
+    path: "/api/yonsei/inbody/inbody/v1/patient"
+    name: 인바디 가져오기
+    description: |
+      해당 환자의 인바디 최근 10개의 값을 선별해서 가져옵니다
+    request:
+      requestDescription:
+      requestHeaders:
+      requestParams:
+        id:
+          type: string
+          m/o: mandatory
+          description: 검색을 원하는 아이디를 입력하세요.
+      requestBody:
+    response:
+      success: |
+        인바디 데이터를 가져왔습니다.
+        ````json
+        {
+          "responseTime": "2024-06-28 13:15:15",
+          "message": "Inbody Data of Pat_ID 1111",
+          "data": {
+            "weight": ["11",..],
+            "percent_body_fat": ["11",..],
+            "body_fat_mass": ["11",..],
+            "skeletal_muscle_mass": ["11",..],
+            "ecw_tbw": ["11",..],
+            "dataTimestamp": ["11",..]
+          }
+        }
+        ````
+      fail: |
+        환자가 존재하지 않으면, 검색 실패를 리턴한다.
+
+  - method: GET
+    path: "/api/yonsei/inbody/inbody/v1/patient/thumbnail"
+    name: 인바디 썸네일 가져오기
+    description: |
+      해당 환자의 인바디 썸네일을 가져옵니다
+    request:
+      requestDescription:
+      requestHeaders:
+      requestParams:
+        id:
+          type: string
+          m/o: mandatory
+          description: 검색을 원하는 아이디를 입력하세요.
+      requestBody:
+    response:
+      success: |
+        인바디 썸네일을 가져왔습니다.
+        ````json
+        {
+          "responseTime": "2024-06-28 11:16:14",
+          "message": "Inbody Thumbnail of Pat_ID asd",
+          "data": [
+            {
+              "_id": "666ba2adc4fc6775a6114862",
+              "pat_id": "asd",
+              "inbody_type": "Inbody580",
+              "data_type": "inbody/inbody",
+              "createdAt": "2024-06-14 10:53:49",
+              "editBy": null
+            },
+            ...
+        }
+        ````
+      fail: |
+        약물 검색 실패
+
+  - method: GET
+    path: "/api/yonsei/inbody/inbody/v1/patient/detail"
+    name: 인바디 상세 검색
+    description: |
+      해당 환자의 인바디 상세 정보를 가져옵니다
+    request:
+      requestDescription: |
+        인바디 상세 정보를 가져옵니다
+      requestHeaders:
+      requestParams:
+        recent:
+          type: boolean
+          m/o: mandatory
+          description: 최근 데이터를 가져올지 여부를 입력하세요.
+        id:
+          type: string
+          m/o: mandatory
+          description: 문서 타입을 입력하세요. [drug, disease]
+        labels:
+          type: stringArray
+          m/o: optional
+          description: 비우면 전체 값,  weight,height,bsm 같이 라벨을 배열로 입력하면 해당 라벨만 가져옵니다.
+      requestBody:
+    response:
+      success: |
+        인바디 데이터를 성공적으로 가져왔습니다.
+        ````json
+        // weight,height,bsm
+        {
+          "responseTime": "2024-06-28 13:15:15",
+          "message": "Inbody detail Data of Pat_ID 1111",
+          "data": {
+            "weight": ["11",..],
+            "height": ["11",..],
+            "bsm": ["11",..]
+          }
+        }
+
+        // 전체 데이터
+        {
+          "responseTime": "2024-06-28 13:15:15",
+          "message": "Inbody detail Data of Pat_ID 1111",
+          "data": {
+            "weight": ["11",..],
+            "percent_body_fat": ["11",..],
+            "body_fat_mass": ["11",..],
+            "skeletal_muscle_mass": ["11",..],
+            "ecw_tbw": ["11",..],
+            "dataTimestamp": ["11",..],
+            ...,
+            ...,
+          }
+        }
+        ````
+      fail: |
+        환자 검색 실패
+

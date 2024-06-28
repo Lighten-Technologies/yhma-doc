@@ -1,0 +1,13 @@
+---
+outline: deep
+---
+
+# <%=moduleName%>
+
+<%for(schema of schemaEndPoints){%>
+### <%=schema.schemaName%>
+
+```json
+<%- schema.schemaData %>
+```
+<%}%>

@@ -1,0 +1,261 @@
+---
+outline: deep
+---
+<!--<RestfulTester  endpoint="example/<%=moduleName%>/<%=version%><%=endPoint.path%>" />-->
+
+# <%=apiPath%>
+<%//------------------------------%>
+<%//GET%>
+<%//------------------------------%>
+<%if(endPoint?.GET){%>
+## <%=endPoint.GET?.todo ? "[!TODO] ": ""%>[GET] <%=endPoint.GET.name%>
+
+<%-endPoint.GET.description%>
+
+<%  if(endPoint.GET?.request){%>
+### Request
+<%-endPoint.GET.request.requestDescription%>
+<%    if(endPoint.GET.request?.requestHeaders){%>
+#### Header
+<%      if(typeof(endPoint.GET.request.requestHeaders) == "object"){%>
+| Name | Type   | Required  | Description                 |
+| ---- | ------ | --------- | --------------------------- |
+<%for(let key in endPoint.GET.request.requestHeaders){%>| <%=key%>  | <%=endPoint.GET.request.requestHeaders[key].type%> | <%=endPoint.GET.request.requestHeaders[key]["m/o"]%> | <%=endPoint.GET.request.requestHeaders[key].description%>  |
+<%}%>
+<%      }else if(typeof(endPoint.GET.request.requestHeaders) == "string"){%>
+<%-endPoint.GET.request.requestHeaders%>
+<%      }%>
+<%    }%>
+
+<%    if(endPoint.GET.request?.requestParams){%>
+#### Parameters
+<%      if(typeof(endPoint.GET.request.requestParams) == "object"){%>
+| Name | Type   | Required  | Description                 |
+| ---- | ------ | --------- | --------------------------- |
+<%for(let key in endPoint.GET.request.requestParams){%>| <%=key%>  | <%= endPoint.GET.request.requestParams[key].type%> | <%=endPoint.GET.request.requestParams[key]["m/o"]%> | <%=endPoint.GET.request.requestParams[key].description%>  | 
+<%}%>
+<%      }else if(typeof(endPoint.GET.request.requestParams) == "string"){%>
+<%-endPoint.GET.request.requestParams%>
+<%      }%>
+<%    }%>
+
+<%    if(endPoint.GET.request?.requestBody){%>
+#### Body
+<%      if(typeof(endPoint.GET.request.requestBody) == "object"){%>
+| Name | Type   | Required  | Description                 |
+| ---- | ------ | --------- | --------------------------- |
+<%for(let key in endPoint.GET.request.requestBody){%>| <%= key%>  | <%= endPoint.GET.request.requestBody[key].type%> | <%=endPoint.GET.request.requestBody[key]["m/o"]%> | <%=endPoint.GET.request.requestBody[key].description%>  |
+<%}%>
+<%      }else if(typeof(endPoint.GET.request.requestBody) == "string"){%>
+<%-endPoint.GET.request.requestBody%>
+<%      }%>
+<%    }%>
+
+<%    if(endPoint.GET.response){%>
+### Response
+<%-endPoint.GET.response.responseDescription%>
+
+<%      if(endPoint.GET.response?.success){%>
+#### Success
+<%-endPoint.GET.response.success%>
+<%      }%>
+
+<%      if(endPoint.GET.response?.fail){%>
+#### Failure
+<%-endPoint.GET.response.fail%>
+<%      }%>
+<%    }%>
+<%  }%>
+<%}%>
+
+<%//------------------------------%>
+<%//POST%>
+<%//------------------------------%>
+<%if(endPoint?.POST){%>
+## <%=endPoint.POST?.todo ? "[!TODO] ": ""%>[POST] <%=endPoint.POST.name%>
+
+<%-endPoint.POST.description%>
+
+<%  if(endPoint.POST?.request){%>
+### Request
+<%-endPoint.POST.request.requestDescription%>
+<%    if(endPoint.POST.request?.requestHeaders){%>
+#### Header
+<%      if(typeof(endPoint.POST.request.requestHeaders) == "object"){%>
+| Name | Type   | Required  | Description                 |
+| ---- | ------ | --------- | --------------------------- |
+<%for(let key in endPoint.POST.request.requestHeaders){%>| <%=key%>  | <%=endPoint.POST.request.requestHeaders[key].type%> | <%=endPoint.POST.request.requestHeaders[key]["m/o"]%> | <%=endPoint.POST.request.requestHeaders[key].description%>  |
+<%}%>
+<%      }else if(typeof(endPoint.POST.request.requestHeaders) == "string"){%>
+<%-endPoint.POST.request.requestHeaders%>
+<%      }%>
+<%    }%>
+
+<%    if(endPoint.POST.request?.requestParams){%>
+#### Parameters
+<%      if(typeof(endPoint.POST.request.requestParams) == "object"){%>
+| Name | Type   | Required  | Description                 |
+| ---- | ------ | --------- | --------------------------- |
+<%for(let key in endPoint.POST.request.requestParams){%>| <%=key%>  | <%= endPoint.POST.request.requestParams[key].type%> | <%=endPoint.POST.request.requestParams[key]["m/o"]%> | <%=endPoint.POST.request.requestParams[key].description%>  | 
+<%}%>
+<%      }else if(typeof(endPoint.POST.request.requestParams) == "string"){%>
+<%-endPoint.POST.request.requestParams%>
+<%      }%>
+<%    }%>
+
+<%    if(endPoint.POST.request?.requestBody){%>
+#### Body
+<%      if(typeof(endPoint.POST.request.requestBody) == "object"){%>
+| Name | Type   | Required  | Description                 |
+| ---- | ------ | --------- | --------------------------- |
+<%for(let key in endPoint.POST.request.requestBody){%>| <%= key%>  | <%= endPoint.POST.request.requestBody[key].type%> | <%=endPoint.POST.request.requestBody[key]["m/o"]%> | <%=endPoint.POST.request.requestBody[key].description%>  |
+<%}%>
+<%      }else if(typeof(endPoint.POST.request.requestBody) == "string"){%>
+<%-endPoint.POST.request.requestBody%>
+<%      }%>
+<%    }%>
+
+<%    if(endPoint.POST.response){%>
+### Response
+<%-endPoint.POST.response.responseDescription%>
+
+<%      if(endPoint.POST.response?.success){%>
+#### Success
+<%-endPoint.POST.response.success%>
+<%      }%>
+
+<%      if(endPoint.POST.response?.fail){%>
+#### Failure
+<%-endPoint.POST.response.fail%>
+<%      }%>
+<%    }%>
+<%  }%>
+<%}%>
+
+<%//------------------------------%>
+<%//PUT%>
+<%//------------------------------%>
+<%if(endPoint?.PUT){%>
+## <%=endPoint.PUT?.todo ? "[!TODO] ": ""%>[PUT] <%=endPoint.PUT.name%>
+
+<%-endPoint.PUT.description%>
+
+<%  if(endPoint.PUT?.request){%>
+### Request
+<%-endPoint.PUT.request.requestDescription%>
+<%    if(endPoint.PUT.request?.requestHeaders){%>
+#### Header
+<%      if(typeof(endPoint.PUT.request.requestHeaders) == "object"){%>
+| Name | Type   | Required  | Description                 |
+| ---- | ------ | --------- | --------------------------- |
+<%for(let key in endPoint.PUT.request.requestHeaders){%>| <%=key%>  | <%=endPoint.PUT.request.requestHeaders[key].type%> | <%=endPoint.PUT.request.requestHeaders[key]["m/o"]%> | <%=endPoint.PUT.request.requestHeaders[key].description%>  |
+<%}%>
+<%      }else if(typeof(endPoint.PUT.request.requestHeaders) == "string"){%>
+<%-endPoint.PUT.request.requestHeaders%>
+<%      }%>
+<%    }%>
+
+<%    if(endPoint.PUT.request?.requestParams){%>
+#### Parameters
+<%      if(typeof(endPoint.PUT.request.requestParams) == "object"){%>
+| Name | Type   | Required  | Description                 |
+| ---- | ------ | --------- | --------------------------- |
+<%for(let key in endPoint.PUT.request.requestParams){%>| <%=key%>  | <%= endPoint.PUT.request.requestParams[key].type%> | <%=endPoint.PUT.request.requestParams[key]["m/o"]%> | <%=endPoint.PUT.request.requestParams[key].description%>  | 
+<%}%>
+<%      }else if(typeof(endPoint.PUT.request.requestParams) == "string"){%>
+<%-endPoint.PUT.request.requestParams%>
+<%      }%>
+<%    }%>
+
+<%    if(endPoint.PUT.request?.requestBody){%>
+#### Body
+<%      if(typeof(endPoint.PUT.request.requestBody) == "object"){%>
+| Name | Type   | Required  | Description                 |
+| ---- | ------ | --------- | --------------------------- |
+<%for(let key in endPoint.PUT.request.requestBody){%>| <%= key%>  | <%= endPoint.PUT.request.requestBody[key].type%> | <%=endPoint.PUT.request.requestBody[key]["m/o"]%> | <%=endPoint.PUT.request.requestBody[key].description%>  |
+<%}%>
+<%      }else if(typeof(endPoint.PUT.request.requestBody) == "string"){%>
+<%-endPoint.PUT.request.requestBody%>
+<%      }%>
+<%    }%>
+
+<%    if(endPoint.PUT.response){%>
+### Response
+<%-endPoint.PUT.response.responseDescription%>
+
+<%      if(endPoint.PUT.response?.success){%>
+#### Success
+<%-endPoint.PUT.response.success%>
+<%      }%>
+
+<%      if(endPoint.PUT.response?.fail){%>
+#### Failure
+<%-endPoint.PUT.response.fail%>
+<%      }%>
+<%    }%>
+<%  }%>
+<%}%>
+
+<%//------------------------------%>
+<%//DELETE%>
+<%//------------------------------%>
+<%if(endPoint?.DELETE){%>
+## <%=endPoint.DELETE?.todo ? "[!TODO] ": ""%>[DELETE] <%=endPoint.DELETE.name%>
+
+<%-endPoint.DELETE.description%>
+
+<%  if(endPoint.DELETE?.request){%>
+### Request
+<%-endPoint.DELETE.request.requestDescription%>
+<%    if(endPoint.DELETE.request?.requestHeaders){%>
+#### Header
+<%      if(typeof(endPoint.DELETE.request.requestHeaders) == "object"){%>
+| Name | Type   | Required  | Description                 |
+| ---- | ------ | --------- | --------------------------- |
+<%for(let key in endPoint.DELETE.request.requestHeaders){%>| <%=key%>  | <%=endPoint.DELETE.request.requestHeaders[key].type%> | <%=endPoint.DELETE.request.requestHeaders[key]["m/o"]%> | <%=endPoint.DELETE.request.requestHeaders[key].description%>  |
+<%}%>
+<%      }else if(typeof(endPoint.DELETE.request.requestHeaders) == "string"){%>
+<%-endPoint.DELETE.request.requestHeaders%>
+<%      }%>
+<%    }%>
+
+<%    if(endPoint.DELETE.request?.requestParams){%>
+#### Parameters
+<%      if(typeof(endPoint.DELETE.request.requestParams) == "object"){%>
+| Name | Type   | Required  | Description                 |
+| ---- | ------ | --------- | --------------------------- |
+<%for(let key in endPoint.DELETE.request.requestParams){%>| <%=key%>  | <%= endPoint.DELETE.request.requestParams[key].type%> | <%=endPoint.DELETE.request.requestParams[key]["m/o"]%> | <%=endPoint.DELETE.request.requestParams[key].description%>  | 
+<%}%>
+<%      }else if(typeof(endPoint.DELETE.request.requestParams) == "string"){%>
+<%-endPoint.DELETE.request.requestParams%>
+<%      }%>
+<%    }%>
+
+<%    if(endPoint.DELETE.request?.requestBody){%>
+#### Body
+<%      if(typeof(endPoint.DELETE.request.requestBody) == "object"){%>
+| Name | Type   | Required  | Description                 |
+| ---- | ------ | --------- | --------------------------- |
+<%for(let key in endPoint.DELETE.request.requestBody){%>| <%= key%>  | <%= endPoint.DELETE.request.requestBody[key].type%> | <%=endPoint.DELETE.request.requestBody[key]["m/o"]%> | <%=endPoint.DELETE.request.requestBody[key].description%>  |
+<%}%>
+<%      }else if(typeof(endPoint.DELETE.request.requestBody) == "string"){%>
+<%-endPoint.DELETE.request.requestBody%>
+<%      }%>
+<%    }%>
+
+<%    if(endPoint.DELETE.response){%>
+### Response
+<%-endPoint.DELETE.response.responseDescription%>
+
+<%      if(endPoint.DELETE.response?.success){%>
+#### Success
+<%-endPoint.DELETE.response.success%>
+<%      }%>
+
+<%      if(endPoint.DELETE.response?.fail){%>
+#### Failure
+<%-endPoint.DELETE.response.fail%>
+<%      }%>
+<%    }%>
+<%  }%>
+<%}%>

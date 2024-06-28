@@ -1,0 +1,6 @@
+moduleName: yhma-api
+versionName: master-v1.0.0
+patchNotes: |
+  version: 1.0.0
+    date: 2024-06-28
+    description: Initial version

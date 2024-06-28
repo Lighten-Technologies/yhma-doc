@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "docs": "vitepress dev docs --host",
+    "docs:dev": "vitepress dev docs",
+    "docs:generate": "node docs/.vitepress/generateDocs.mjs",
+    "docs:devgen": "nodemon --watch ./docs/knowledge-base -e yml,ejs,js,json --exec 'vitepress dev docs --host'",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "vitepress": "^1.2.3"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "ejs": "^3.1.10",
+    "markdown-it": "^14.1.0",
+    "yaml": "^2.4.5"
+  }
+}
