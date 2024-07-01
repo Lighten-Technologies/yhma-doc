@@ -92,7 +92,7 @@ endpoints:
         id:
           type: string
           m/o: optional
-          description: 검색을 원하는 환자 아이디를 입력하세요.
+          description: 검색을 원하는 인바디 항목의 아이디를 입력하세요.
         labels:
           type: stringArray
           m/o: optional
