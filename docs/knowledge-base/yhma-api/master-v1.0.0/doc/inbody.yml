@@ -8,7 +8,7 @@ endpoints:
       requestDescription:
       requestHeaders:
       requestParams:
-        id:
+        patId:
           type: string
           m/o: mandatory
           description: 검색을 원하는 아이디를 입력하세요.
@@ -42,7 +42,7 @@ endpoints:
       requestDescription:
       requestHeaders:
       requestParams:
-        id:
+        patId:
           type: string
           m/o: mandatory
           description: 검색을 원하는 아이디를 입력하세요.
@@ -67,7 +67,7 @@ endpoints:
         }
         ````
       fail: |
-        약물 검색 실패
+        환자 검색 실패
 
   - method: GET
     path: "/api/yonsei/inbody/inbody/v1/patient/detail"
@@ -76,17 +76,23 @@ endpoints:
       해당 환자의 인바디 상세 정보를 가져옵니다
     request:
       requestDescription: |
-        인바디 상세 정보를 가져옵니다
+        인바디 상세 정보를 가져옵니다.
+
+        환자 아이디까지 입력하면, 환자 데이터를 리턴하고, 환자 아이디와 해당 인바디의 id를 입력하면, 해당 인바디 데이터를 리턴합니다.
       requestHeaders:
       requestParams:
         recent:
           type: boolean
           m/o: mandatory
           description: 최근 데이터를 가져올지 여부를 입력하세요.
-        id:
+        patId:
           type: string
           m/o: mandatory
-          description: 검색을 원하는 아이디를 입력하세요.
+          description: 검색을 원하는 환자 아이디를 입력하세요.
+        id:
+          type: string
+          m/o: optional
+          description: 검색을 원하는 환자 아이디를 입력하세요.
         labels:
           type: stringArray
           m/o: optional
@@ -125,4 +131,3 @@ endpoints:
         ````
       fail: |
         환자 검색 실패
-

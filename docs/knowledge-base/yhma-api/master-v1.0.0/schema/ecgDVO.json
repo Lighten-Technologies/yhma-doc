@@ -1,0 +1,55 @@
+{
+  "responseTime": "YYYY-MM-DD HH:mm:ss",
+  "message": "string",
+  "data": [
+    {
+      "_id": "string",
+      "pat_id": "string",
+      "createdAt": "YYYY-MM-DDTHH:mm:ss.SSSZ",
+      "bpm": "string",
+      "temp": "string",
+      "rhythmArrhythmiaInfo": "string",
+      "beatArrhythmiaInfo": "string",
+      "data": [
+        {
+          "packetCount": 0,
+          "heartRate": "null",
+          "respirationRate": "null",
+          "temperature": "null",
+          "batteryPercentage": "null",
+          "motionStatus": "null",
+          "apnea": "null",
+          "leadFail": "null",
+          "rhythmArrhythmiaInfo": "null",
+          "beatArrhythmiaInfo": 0,
+          "rPeak": 0,
+          "ecg": [
+            0
+          ],
+          "respiration": [
+            0
+          ]
+        }
+      ],
+      "patient": [
+        {
+          "_id": "string",
+          "pat_id": "string",
+          "pat_name": "string",
+          "pat_sex": "string",
+          "pat_birth": "string",
+          "pat_email": "string",
+          "pat_phone": "string",
+          "pat_address": "string",
+          "pat_password": "string",
+          "editBy": "null",
+          "isReport": true,
+          "pat_private_confirm_date": "string",
+          "loginedAt": "string",
+          "createdAt": "string",
+          "updatedAt": "string"
+        }
+      ]
+    }
+  ]
+}
