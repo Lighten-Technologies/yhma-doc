@@ -4,3 +4,6 @@ patchNotes: |
   version: 1.0.0
     date: 2024-06-28
     description: Initial version
+
+  + inbody 관련 API 변경됨
+  + hiCardi 관련 API 추가됨
