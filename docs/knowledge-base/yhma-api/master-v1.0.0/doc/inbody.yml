@@ -112,7 +112,6 @@ endpoints:
             "bsm": ["11",..]
           }
         }
-
         // 전체 데이터
         {
           "responseTime": "2024-07-03 13:51:07",
@@ -190,7 +189,7 @@ endpoints:
             "bmr": [  // 기초대사량
               "1555"
             ],
-            "amc": [  // ?? (Arm muscle circumference)
+            "amc": [  // 팔 근육 둘레
               "27.1",
               "25.3"
             ],
@@ -336,34 +335,35 @@ endpoints:
               "2.89"
             ],
             "upper_limit_fat": [  // 체지방량 상한선
-              "8.1"
-            ],
-            "lower_limit_fat": [  // 체지방량 하한선
               "16.2"
             ],
-            "upper_limit_bmr": [  // 기초대사량 상한선 ??
-              "1641"
+            "lower_limit_fat": [  // 체지방량 하한선
+              "8.1"
             ],
-            "lower_limit_bmr": [  // 기초대사량 하한선 ??
+            "upper_limit_bmr": [  // 기초대사량 상한선
               "1923"
             ],
-            "upper_limit_tbw": [  // 체수분 상한선 ??
-              "37.9"
+            "lower_limit_bmr": [  // 기초대사량 하한선
+              "1641"
             ],
-            "lower_limit_tbw": [  // 체수분 하한선 ??
+            "upper_limit_tbw": [  // 체수분 상한선
               "46.3"
             ],
-            "upper_limit_ffm": [  // 지방을 제외한 무게 상한선
-              "51.5"
+            "lower_limit_tbw": [  // 체수분 하한선
+              "37.9"
+
             ],
-            "lower_limit_ffm": [  // 지방을 제외한 무게 하한선
+            "upper_limit_ffm": [  // 지방을 제외한 무게 상한선
               "63.0"
             ],
+            "lower_limit_ffm": [  // 지방을 제외한 무게 하한선
+              "51.5"
+            ],
             "upper_limit_slm": [  // 근육량 상한선
-              "48.7"
+              "59.5"
             ],
             "lower_limit_slm": [  // 근육량 하한선
-              "59.5"
+              "48.7"
             ],
             "upper_limit_2_bmi": [
               "0.0"
@@ -410,91 +410,91 @@ endpoints:
             "smi_": [ // smi
               "7.8"
             ],
-            "segmental_circumference_neck": [
+            "segmental_circumference_neck": [ // 목 둘레
               "36.3"
             ],
-            "segmental_circumference_chest": [
+            "segmental_circumference_chest": [  // 가슴 둘레
               "96.3"
             ],
-            "segmental_circumference_abdomen": [
+            "segmental_circumference_abdomen": [  // 복부 둘레
               "89.4"
             ],
-            "segmental_circumference_hip": [
+            "segmental_circumference_hip": [  // 엉덩이 둘레
               "100.5"
             ],
-            "segmental_circumference_right_arm": [
+            "segmental_circumference_right_arm": [  // 오른팔 둘레
               "31.5"
             ],
-            "segmental_circumference_left_arm": [
+            "segmental_circumference_left_arm": [ // 왼팔 둘레
               "31.4"
             ],
-            "segmental_circumference_right_thigh": [
+            "segmental_circumference_right_thigh": [  // 오른 허벅지 둘레
               "55.6"
             ],
-            "segmental_circumference_left_thigh": [
+            "segmental_circumference_left_thigh": [ // 왼 허벅지 둘레
               "55.7"
             ],
-            "measured_muscle_circumference_of_right_arm": [
+            "measured_muscle_circumference_of_right_arm": [ // 오른팔 근육 둘레 측정값
               "27.4"
             ],
-            "measured_muscle_circumference_of_chest": [
+            "measured_muscle_circumference_of_chest": [ // 가슴 둘레 측정값
               "90.4"
             ],
-            "measured_muscle_circumference_of_hip": [
+            "measured_muscle_circumference_of_hip": [ // 엉덩이 근육 둘레 측정값
               "82.3"
             ],
-            "measured_muscle_circumference_of_right_thigh": [
+            "measured_muscle_circumference_of_right_thigh": [ // 오른 허벅지 근육 둘레 측정값
               "48.7"
             ],
-            "measured_muscle_circumference_of_left_thigh": [
+            "measured_muscle_circumference_of_left_thigh": [  // 왼허벅지 근육 둘레 측정값
               "48.7"
             ],
-            "measured_fat_thickness_of_right_arm": [
+            "measured_fat_thickness_of_right_arm": [  // 오른팔 지방 두께 측정값
               "0.7"
             ],
-            "measured_fat_thickness_of_left_thigh": [
+            "measured_fat_thickness_of_left_thigh": [ // 왼허벅지  지방 두께 측정값
               "1.1"
             ],
-            "measured_fat_thickness_of_left_arm": [
+            "measured_fat_thickness_of_left_arm": [ // 왼팔 지방 두께 측정값
               "0.7"
             ],
-            "measured_fat_thickness_of_chest": [
+            "measured_fat_thickness_of_chest": [  // 가슴 지방 두께 측정값
               "0.9"
             ],
-            "measured_fat_thickness_of_abdomen": [
+            "measured_fat_thickness_of_abdomen": [  // 복부 지방 두께 측정값
               "1.1"
             ],
-            "measured_fat_thickness_of_right_thigh": [
+            "measured_fat_thickness_of_right_thigh": [  // 오른 허벅지 지방 두께 측정값
               "1.1"
             ],
-            "growth_score": [
+            "growth_score": [ // 성장점수
               "66"
             ],
-            "obesity_degree_of_a_child": [
+            "obesity_degree_of_a_child": [  // 어린이 비만도
               "118"
             ],
             "obesity_degree": [ // 비만도
               "114"
             ],
-            "recommended_energy": [
+            "recommended_energy": [ // 권장 에너지
               "2311.0"
             ],
-            "systolic": [
+            "systolic": [ // 수축기 혈압
               "0"
             ],
-            "diastolic": [
+            "diastolic": [  // 이완기 혈압
               "0"
             ],
-            "pulse": [
+            "pulse": [  // 맥박
               "0"
             ],
-            "mean_artery_pressure": [
+            "mean_artery_pressure": [ // 평균 동맥압
               "0"
             ],
-            "pulse_pressure": [
+            "pulse_pressure": [ // 맥압
               "0"
             ],
-            "rate_pressure_product": [
+            "rate_pressure_product": [  // 압력-맥박 곱
               "0"
             ],
             "lower_limit_lean_mass_ra": [ // 오른팔 근육량 하한선

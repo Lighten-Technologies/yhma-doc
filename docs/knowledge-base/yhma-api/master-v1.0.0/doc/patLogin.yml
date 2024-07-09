@@ -1,0 +1,92 @@
+endpoints:
+  - method: GET
+    path: "/api/yonsei/v1/patientLogin/refreshToken"
+    name: 로그인 토큰 재발급
+    description: |
+      해당 환자의 토큰을 재발급합니다.
+    request:
+      requestDescription:
+      requestHeaders:
+      requestParams:
+        patId:
+          type: string
+          m/o: mandatory
+          description: 토큰 재발급을 원하는 아이디를 입력하세요.
+      requestBody:
+    response:
+      success: |
+        환자 정보를 가져옵니다.
+        ````json
+        {
+          "responseTime": "2024-07-09 10:49:00",
+          "message": "patientInfo",
+          "data": [
+            {
+              "_id": "65a0d88bc...",
+              "pat_id": "asd",
+              "pat_name": "김..",
+              "pat_sex": "M",
+              "pat_birth": "1991-03-06",
+              "pat_email": "asd@gmail.com",
+              "pat_phone": "01012345678",
+              "pat_address": "강원특별자치도 강릉시",
+              "pat_password": "U2FsdGVkX19T0....",
+              "editBy": null,
+              "isReport": true,
+              "pat_private_confirm_date": "2024-01-12",
+              "loginedAt": "2024-07-09 09:59:15",
+              "createdAt": "2024-01-12 15:13:31",
+              "updatedAt": "2024-04-18T06:36:45.530Z",
+              "pat_token": "aIeH2P8UTFAsf1z/q.....="
+            }
+          ]
+        }
+        ````
+      fail: |
+        환자가 존재하지 않으면, 검색 실패를 리턴한다.
+
+  - method: POST
+    path: "/api/yonsei/v1/patientLogin/token"
+    name: 토큰 로그인
+    description: |
+      토큰을 이용하여 로그인합니다.
+    request:
+      requestDescription:
+      requestHeaders:
+      requestParams:
+      requestBody:
+        token:
+          type: string
+          m/o: mandatory
+          description: 로그인을 원하는 토큰을 입력하세요.
+    response:
+      success: |
+        환자 정보를 가져옵니다.
+        ````json
+        {
+          "responseTime": "2024-07-09 10:49:00",
+          "message": "patientInfo",
+          "data": [
+            {
+              "_id": "65a0d88bc...",
+              "pat_id": "asd",
+              "pat_name": "김..",
+              "pat_sex": "M",
+              "pat_birth": "1991-03-06",
+              "pat_email": "asd@gmail.com",
+              "pat_phone": "01012345678",
+              "pat_address": "강원특별자치도 강릉시",
+              "pat_password": "U2FsdGVkX19T0....",
+              "editBy": null,
+              "isReport": true,
+              "pat_private_confirm_date": "2024-01-12",
+              "loginedAt": "2024-07-09 09:59:15",
+              "createdAt": "2024-01-12 15:13:31",
+              "updatedAt": "2024-04-18T06:36:45.530Z",
+              "pat_token": "aIeH2P8UTFAsf1z/q.....="
+            }
+          ]
+        }
+        ````
+      fail: |
+        환자가 존재하지 않으면, 검색 실패를 리턴한다.
