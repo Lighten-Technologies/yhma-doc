@@ -11,7 +11,11 @@ endpoints:
         patId:
           type: string
           m/o: mandatory
-          description: 검색을 원하는 아이디를 입력하세요.
+          description: 검색을 원하는 환자아이디를 입력하세요.
+        id:
+          type: string
+          m/o: optional
+          description: 검색을 원하는 ecg아이디를 입력하세요. 
       requestBody:
     response:
       success: |
