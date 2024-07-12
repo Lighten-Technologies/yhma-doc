@@ -1,0 +1,202 @@
+endpoints:
+  - method: GET
+    path: "/api/yonsei/vital/v1/patient"
+    name: 환자 바이탈 정보 가져오기
+    description: |
+      해당 환자의 토큰을 재발급합니다.
+    request:
+      requestDescription: |
+        date를 입력할 경우 해당 일자로 부터 1년 이내 측정한 값 중 가장 최근의 값 7개를 조회하며,
+        
+        date를 입력하지 않을 경우 전체 값 모두를 조회합니다.
+      requestHeaders:
+      requestParams:
+        id:
+          type: string
+          m/o: mandatory
+          description: 바이탈 조회를 원하는 환자아이디를 입력하세요.
+        date:
+          type: YYYY-MM-DD
+          m/o: optional
+          description: 조회를 원하는 기준 일자를 입력하세요.
+      requestBody:
+    response:
+      success: |
+        환자 바이탈 정보를 가져옵니다.
+        ````json
+        {
+          "responseTime": "2024-07-12 10:27:07",
+          "message": "vitalRangeResult",
+          "data": {
+            "pat_id": "zxc",
+            "updatedAt": "2024-07-12T00:01:00Z",
+            "bsm": {
+              "weight": {
+                "data": [75, 75],
+                "timestamp": [
+                  "2024-04-28T00:01:00Z",
+                  "2024-07-12T00:01:00Z"
+                ]
+              },
+              "height": {
+                "data": [175, 175],
+                "timestamp": [
+                  "2024-04-28T00:01:00Z",
+                  "2024-07-12T00:01:00Z"
+                ]
+              }
+            },
+            "vital": {
+              "sbp": {
+                "data": [120, 120],
+                "timestamp": [
+                  "2024-04-28T00:01:00Z",
+                  "2024-07-12T00:01:00Z"
+                ]
+              },
+              "dbp": {
+                "data": [60, 60],
+                "timestamp": [
+                  "2024-04-28T00:01:00Z",
+                  "2024-07-12T00:01:00Z"
+                ]
+              },
+              "pulse": {
+                "data": [91, 91],
+                "timestamp": [
+                  "2024-04-28T00:01:00Z",
+                  "2024-07-12T00:01:00Z"
+                ]
+              },
+              "temp": {
+                "data": [36.6, 36.6],
+                "timestamp": [
+                  "2024-04-28T00:01:00Z",
+                  "2024-07-12T00:01:00Z"
+                ]
+              },
+              "spo2": {
+                "data": [99.8, 99.8],
+                "timestamp": [
+                  "2024-04-28T00:01:00Z",
+                  "2024-07-12T00:01:00Z"
+                ]
+              },
+              "glucose": {
+                "data": [120, 120],
+                "timestamp": [
+                  "2024-04-28T00:01:00Z",
+                  "2024-07-12T00:01:00Z"
+                ]
+              },
+              "fasting": {
+                "data": [1, 1],
+                "timestamp": [
+                  "2024-04-28T00:01:00Z",
+                  "2024-07-12T00:01:00Z"
+                ]
+              },
+              "antihypertensives": {
+                "data": [0, 0],
+                "timestamp": [
+                  "2024-04-28T00:01:00Z",
+                  "2024-07-12T00:01:00Z"
+                ]
+              }
+            }
+          }
+        }
+        ````
+      fail: |
+        환자가 존재하지 않으면, 검색 실패를 리턴한다.
+
+  - method: POST
+    path: "/api/yonsei/vital/v1/patient"
+    name: 환자 바이탈 정보 업데이트
+    description: |
+      해당 환자의 바이탈 정보를 업데이트합니다.
+    request:
+      requestDescription: |
+        수축기 혈압, 이완기 혈압, 맥박, 혈압약 복용여부는 모두 만족해야 입력 가능합니다.
+
+        혈당, 공복여부는 모두 만족해야 입력 가능합니다.
+      requestHeaders:
+      requestParams:
+      requestBody:
+        id:
+          type: string
+          m/o: mandatory
+          description: 로그인을 원하는 토큰을 입력하세요.
+        temp:
+          type: string
+          m/o: optional
+          description: 체온을 입력하세요.
+        sbp:
+          type: string
+          m/o: optional
+          description: 수축기 혈압을 입력하세요.(높은거)
+        dbp:
+          type: string
+          m/o: optional
+          description: 이완기 혈압을 입력하세요.(낮은거)
+        pulse:
+          type: string
+          m/o: optional
+          description: 맥박수를 입력하세요.
+        glucose:
+          type: string
+          m/o: optional
+          description: 혈당을 입력하세요.
+        spo2:
+          type: string
+          m/o: optional
+          description: 산소포화도를 입력하세요.
+        height:
+          type: string
+          m/o: optional
+          description: 키를 입력하세요.
+        weight:
+          type: string
+          m/o: optional
+          description: 몸무게를 입력하세요.
+        fasting:
+          type: string
+          m/o: optional
+          description: 공복여부를 입력하세요.
+        antihypertensives:
+          type: string
+          m/o: optional
+          description: 혈압약 복용여부를 입력하세요.
+        timestamp:
+          type: string
+          m/o: optional
+          description: 측정 시간을 입력하세요.          
+    response:
+      success: |
+        환자 바이탈 정보를 업데이트합니다.
+        ````json
+        {
+            "responseTime": "2024-07-12 10:25:00",
+            "message": "vitalCreated",
+            "data": [
+                {
+                    "_id": "668f97ab07d5b80835c977b3",
+                    "pat_id": "zxc",
+                    "antihypertensives": "0",
+                    "createdAt": "2024-07-12T01:25:00.000Z",
+                    "dbp": "60",
+                    "editBy": null,
+                    "fasting": "1",
+                    "glucose": "120",
+                    "pat_height": "175",
+                    "pat_weight": "75",
+                    "pulse": "91",
+                    "sbp": "120",
+                    "spo2": "99.8",
+                    "temp": "36.6"
+                }
+            ]
+        }
+        ````
+      fail: |
+        환자가 존재하지 않으면, 검색 실패를 리턴한다.
