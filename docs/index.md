@@ -30,6 +30,8 @@ TODO 태그가 붙은 문서는 아직 작성이 되지 않은 문서 입니다.
 
 암호화 방식은 AES256-gcm 방식을 사용합니다.
 
+### Python
+
 ```python
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import padding
@@ -59,7 +61,9 @@ aes_encrypt(aes_key, '암호화할 데이터')
 aes_decrypt(aes_key, '복호화할 데이터')
 ```
 
-```android
+### Java
+
+```java
 import java.security.SecureRandom;
 import java.security.MessageDigest;
 import java.util.Arrays;
@@ -74,7 +78,7 @@ public class AESUtil {
 
     private static final String AES_ALGORITHM = "AES/GCM/NoPadding";
     private static final String CHARSET_NAME = "UTF-8";
-    private static final String SECRET_KEY = "your_fixed_key";
+    private static final String SECRET_KEY = "암호화 키";
     private static final int IV_LENGTH = 12; // 12바이트 길이의 초기 벡터
     private static final int TAG_LENGTH_BIT = 128;
 
@@ -120,12 +124,76 @@ public class AESUtil {
 }
 ```
 
+### Kotlin
+
+```kotlin
+import android.util.Base64
+import java.nio.charset.StandardCharsets
+import java.security.MessageDigest
+import javax.crypto.Cipher
+import javax.crypto.KeyGenerator
+import javax.crypto.SecretKey
+import javax.crypto.spec.GCMParameterSpec
+import javax.crypto.spec.SecretKeySpec
+
+object AESUtil {
+    private const val AES_ALGORITHM = "AES/GCM/NoPadding"
+    private const val CHARSET_NAME = "UTF-8"
+    private const val IV_LENGTH = 12
+    private const val TAG_LENGTH_BIT = 128
+    private const val SECRET_KEY = "your_fixed_key"
+
+    private fun generateKey(secret: String): SecretKey {
+        val digest = MessageDigest.getInstance("SHA-256")
+        val bytes = secret.toByteArray(StandardCharsets.UTF_8)
+        digest.update(bytes, 0, bytes.size)
+        val key = digest.digest()
+        return SecretKeySpec(key, "AES")
+    }
+
+    fun encrypt(data: String): String {
+        val key = generateKey(SECRET_KEY)
+        val iv = ByteArray(IV_LENGTH)
+        SecureRandom().nextBytes(iv)
+        val gcmSpec = GCMParameterSpec(TAG_LENGTH_BIT, iv)
+
+        val cipher = Cipher.getInstance(AES_ALGORITHM)
+        cipher.init(Cipher.ENCRYPT_MODE, key, gcmSpec)
+        val encryptedData = cipher.doFinal(data.toByteArray(StandardCharsets.UTF_8))
+        val encryptedIVAndData = ByteArray(IV_LENGTH + encryptedData.size)
+        System.arraycopy(iv, 0, encryptedIVAndData, 0, IV_LENGTH)
+        System.arraycopy(encryptedData, 0, encryptedIVAndData, IV_LENGTH, encryptedData.size)
+
+        return Base64.encodeToString(encryptedIVAndData, Base64.NO_WRAP)
+    }
+
+    fun decrypt(encryptedData: String): String {
+        val key = generateKey(SECRET_KEY)
+        val encryptedIVAndData = Base64.decode(encryptedData, Base64.NO_WRAP)
+
+        val iv = encryptedIVAndData.copyOfRange(0, IV_LENGTH)
+        val data = encryptedIVAndData.copyOfRange(IV_LENGTH, encryptedIVAndData.size)
+
+        val gcmSpec = GCMParameterSpec(TAG_LENGTH_BIT, iv)
+
+        val cipher = Cipher.getInstance(AES_ALGORITHM)
+        cipher.init(Cipher.DECRYPT_MODE, key, gcmSpec)
+        val decryptedData = cipher.doFinal(data)
+
+        return String(decryptedData, StandardCharsets.UTF_8)
+    }
+}
+
+```
+
+### Swift
+
 ```swift
 import Foundation
 import CommonCrypto
 
 class AESUtil {
-    static let secretKey = "your_fixed_key"
+    static let secretKey = "암호화 키"
     static let ivLength = 12
 
     static func generateKey(from password: String) -> Data {
