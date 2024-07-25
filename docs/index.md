@@ -30,6 +30,31 @@ TODO 태그가 붙은 문서는 아직 작성이 되지 않은 문서 입니다.
 
 암호화 방식은 AES256-gcm 방식을 사용합니다.
 
+### sample
+
+```json
+{
+  "_id": "ObjectId('6576beb21e25a258a6c9ac2d')",
+  "pat_email": "waeGxKqYlNs99iwUVSKgbhQofnSd8MUq-NhelTzripA7bbd8NUmGfvhjrgjXSw==",
+  "updatedAt": "dObbkOrdY0T4KzegZsb6A6PGmFdhB8NBxvFZB_t18dIP6XIHv0nW4MteJEEHpb9_jKgThYDr",
+  "pat_address": "WdKfkf2A7vcXW-_eMWPf8jzqAGYnHh11kLe-VSoEGf2xzvQRyOjfgEsXlDegXZk9WHDace544KE7nnU=",
+  "weight": "",
+  "createdAt": "VlI6G3VLK7lS_hyRGtSj_0XfR3B5iysnMhYUrh_hGBo2VaquhcOOU0oxjSa9IBo=",
+  "pat_private_confirm": "",
+  "pat_password": "sAPrM2hdygqkVS_JykHOGKGWWePGZxDvOSbX68seowwneQNfrGacD6mw9KPsJ-GuphcVM-Ku1KWF49QG34BoZEcl_c2hqQVB",
+  "loginedAt": "",
+  "pat_id": "asd",
+  "editBy": "CiJ8XdzZm4_Xg5F_xoKEeeJ-4Qi6k0QNIomDF9-cTks=",
+  "pat_name": "uHhwd6lP7-lN1XXzeH29lhC-mPqbkoeQhLcsIQ9BkivuJ0trcg==",
+  "isReport": "8fAN_xkxMwsR048lt8Ri1dCO3EllHzlXr5ZAy5inQ8Y=",
+  "height": "",
+  "pat_private_confirm_date": "Ve6O0-8pvjCzgY_PlBQ4Q1r1wDa7ebXSL2t9_AGtk91BK8zoYxs=",
+  "pat_phone": "nL-7fmiJ5iYbZVFuO_bAr29aIonBh_LFQAntWBjmhrkfb9JzIDRr",
+  "pat_sex": "S0xjfXDUFFOUUEUTe2U6YMn8hTWbrhv7AqKYtco=",
+  "pat_birth": "RPsi5K6D_eUIrvMXEr4GcQqsicNrTWbv5h04lxE4-h_jMI7Gq1E="
+}
+```
+
 ### Python
 
 ```python
