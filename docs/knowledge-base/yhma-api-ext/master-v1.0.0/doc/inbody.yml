@@ -1,0 +1,534 @@
+endpoints:
+  - method: GET
+    path: "/api/yonsei/inbody/inbody/v1/patient"
+    name: 인바디 가져오기
+    description: |
+      해당 환자의 인바디 최근 10개의 값을 선별해서 가져옵니다
+    request:
+      requestDescription:
+      requestHeaders:
+      requestParams:
+        patId:
+          type: string
+          m/o: mandatory
+          description: 검색을 원하는 아이디를 입력하세요.
+      requestBody:
+    response:
+      success: |
+        인바디 데이터를 가져왔습니다.
+        ````json
+        {
+          "responseTime": "2024-06-28 13:15:15",
+          "message": "Inbody Data of Pat_ID 1111",
+          "data": {
+            "weight": ["11",..],
+            "percent_body_fat": ["11",..],
+            "body_fat_mass": ["11",..],
+            "skeletal_muscle_mass": ["11",..],
+            "ecw_tbw": ["11",..],
+            "dataTimestamp": ["11",..]
+          }
+        }
+        ````
+      fail: |
+        환자가 존재하지 않으면, 검색 실패를 리턴한다.
+
+  - method: GET
+    path: "/api/yonsei/inbody/inbody/v1/patient/thumbnail"
+    name: 인바디 썸네일 가져오기
+    description: |
+      해당 환자의 인바디 썸네일을 가져옵니다
+    request:
+      requestDescription:
+      requestHeaders:
+      requestParams:
+        patId:
+          type: string
+          m/o: mandatory
+          description: 검색을 원하는 아이디를 입력하세요.
+      requestBody:
+    response:
+      success: |
+        인바디 썸네일을 가져왔습니다.
+        ````json
+        {
+          "responseTime": "2024-06-28 11:16:14",
+          "message": "Inbody Thumbnail of Pat_ID asd",
+          "data": [
+            {
+              "_id": "666ba2adc4fc6775a6114862",
+              "pat_id": "asd",
+              "inbody_type": "Inbody580",
+              "data_type": "inbody/inbody",
+              "createdAt": "2024-06-14 10:53:49",
+              "editBy": null
+            },
+            ...
+        }
+        ````
+      fail: |
+        환자 검색 실패
+
+  - method: GET
+    path: "/api/yonsei/inbody/inbody/v1/patient/detail"
+    name: 인바디 상세 검색
+    description: |
+      해당 환자의 인바디 상세 정보를 가져옵니다
+    request:
+      requestDescription: |
+        인바디 상세 정보를 가져옵니다.
+
+        환자 아이디까지 입력하면, 환자 데이터를 리턴하고, 환자 아이디와 해당 인바디의 id를 입력하면, 해당 인바디 데이터를 리턴합니다.
+      requestHeaders:
+      requestParams:
+        recent:
+          type: boolean
+          m/o: mandatory
+          description: 최근 데이터를 가져올지 여부를 입력하세요.
+        patId:
+          type: string
+          m/o: mandatory
+          description: 검색을 원하는 환자 아이디를 입력하세요.
+        id:
+          type: string
+          m/o: optional
+          description: 검색을 원하는 인바디 항목의 아이디를 입력하세요.
+        labels:
+          type: stringArray
+          m/o: optional
+          description: 비우면 전체 값,  weight,height,bsm 같이 라벨을 배열로 입력하면 해당 라벨만 가져옵니다.
+      requestBody:
+    response:
+      success: |
+        인바디 데이터를 성공적으로 가져왔습니다.
+        ````json
+        // weight,height,bsm
+        {
+          "responseTime": "2024-06-28 13:15:15",
+          "message": "Inbody detail Data of Pat_ID 1111",
+          "data": {
+            "weight": ["11",..],
+            "height": ["11",..],
+            "bsm": ["11",..]
+          }
+        }
+        // 전체 데이터
+        {
+          "responseTime": "2024-07-03 13:51:07",
+          "message": "Inbody detail Data of Pat_ID asd",
+          "data": {
+            "dataTimestamp": [
+              "2024-06-25 16:02:15"
+            ],
+            "device": [
+              "INBODY580"
+            ],
+            "id": [
+              "0"
+            ],
+            "gender": [
+              "M"
+            ],
+            "height": [ // 키
+              "175.0"
+            ],
+            "age": [  // 나이
+              "27.0"
+            ],
+            "weight": [ // 체중
+              "76.90"
+            ],
+            "date": [ // 측정일
+              "2024/06/11"
+            ],
+            "time": [ // 측정시간
+              "07:00:34"
+            ],
+            "intracellular_water": [  // 세포내수분
+              "25.0"
+            ],
+            "extracellular_water": [  // 세포외수분
+              "15.2"
+            ],
+            "protein": [  // 단백질
+              "10.8"
+            ],
+            "minerals": [ // 무기질
+              "3.76"
+            ],
+            "body_fat_mass": [  // 체지방량
+              "22.10"
+            ],
+            "total_body_water": [ // 체수분
+              "40.2"
+            ],
+            "fat_free_mass": [  // 지방을 제외한 무게
+              "54.8"
+            ],
+            "skeletal_muscle_mass": [ // 골격근량
+              "30.5"
+            ],
+            "soft_lean_mass": [ // 근육량
+              "51.6"
+            ],
+            "bmi": [  // BMI
+              "25.1"
+            ],
+            "percent_body_fat": [ // 체지방률
+              "28.7"
+            ],
+            "waist_hip_ratio": [  // 복부 지방률
+              "0.89"
+            ],
+            "bmc": [  // 골무기질량
+              "3.17"
+            ],
+            "bcm": [  // 체세포량
+              "35.8"
+            ],
+            "bmr": [  // 기초대사량
+              "1555"
+            ],
+            "amc": [  // 팔 근육 둘레
+              "27.1",
+              "25.3"
+            ],
+            "mobile_number": [  // 휴대폰 번호
+              "01066440819"
+            ],
+            "visceral_fat_level": [ // 내장지방 레벨
+              "9"
+            ],
+            "lean_mass_ra": [ // 오른팔 근육 비율
+              "87.3"
+            ],
+            "lean_mass_la": [ // 왼팔 근육 비율
+              "83.7"
+            ],
+            "lean_mass_tr": [ // 몸통 근육 비율
+              "89.4"
+            ],
+            "lean_mass_rl": [ // 오른다리 근육 비율
+              "99.5"
+            ],
+            "lean_mass_ll": [ // 왼다리 근육 비율
+              "98.4"
+            ],
+            "ecw_tbw": [  // 세포외수분비
+              "0.380"
+            ],
+            "segmental_lean_ra": [  // 오른팔 근육량
+              "2.90"
+            ],
+            "segmental_lean_la": [  // 왼팔 근육량
+              "2.78"
+            ],
+            "segmental_lean_tr": [  // 몸통 근육량
+              "23.72"
+            ],
+            "segmental_lean_rl": [  // 오른다리 근육량
+              "9.20"
+            ],
+            "segmental_lean_ll": [  // 왼다리 근육량
+              "9.10"
+            ],
+            "segmental_fat_ra": [ // 오른팔 지방량
+              "1.4"
+            ],
+            "segmental_fat_la": [ // 왼팔 지방량
+              "1.5"
+            ],
+            "segmental_fat_tr": [ // 몸통 지방량
+              "11.2"
+            ],
+            "segmental_fat_rl": [ // 오른다리 지방량
+              "3.4"
+            ],
+            "segmental_fat_ll": [ // 왼다리 지방량
+              "3.4"
+            ],
+            "fat_of_right_arm": [ // 오른팔 지방 비율
+              "237.53"
+            ],
+            "fat_of_left_arm": [  // 왼팔 지방 비율
+              "245.26"
+            ],
+            "fat_of_trunk": [ // 몸통 지방 비율
+              "262.25"
+            ],
+            "fat_of_right_leg": [ // 오른다리 지방 비율
+              "195.73"
+            ],
+            "fat_of_left_leg": [  // 왼다리 지방 비율
+              "195.30"
+            ],
+            "upper_limit_icw": [  // 세포내수분 상한선
+              "28.7"
+            ],
+            "lower_limit_icw": [  // 세포내수분 하한선
+              "23.5"
+            ],
+            "upper_limit_ecw": [  // 세포외수분 상한선
+              "17.6"
+            ],
+            "lower_limit_ecw": [  // 세포외수분 하한선
+              "14.4"
+            ],
+            "upper_limit_protein": [  // 단백질 상한선
+              "12.4"
+            ],
+            "lower_limit_protein": [  // 단백질 하한선
+              "10.2"
+            ],
+            "upper_limit_minerals": [ // 무기질 상한선
+              "4.28"
+            ],
+            "lower_limit_minerals": [ // 무기질 하한선
+              "3.50"
+            ],
+            "upper_limit_weight": [ // 체중 상한선
+              "77.5"
+            ],
+            "lower_limit_weight": [ // 체중 하한선
+              "57.3"
+            ],
+            "upper_limit_smm": [  // 골격근량 상한선
+              "35.2"
+            ],
+            "lower_limit_smm": [  // 골격근량 하한선
+              "28.8"
+            ],
+            "upper_limit_bmi": [  // BMI 상한선
+              "23.0"
+            ],
+            "lower_limit_bmi": [  // BMI 하한선
+              "18.5"
+            ],
+            "upper_limit_pbf": [  // 체지방률 상한선
+              "20.0"
+            ],
+            "lower_limit_pbf": [  // 체지방률 하한선
+              "10.0"
+            ],
+            "upper_limit_whr": [  // 복부 지방률 상한선
+              "0.90"
+            ],
+            "lower_limit_whr": [  // 복부 지방률 하한선
+              "0.80"
+            ],
+            "upper_limit_od": [ // 내장지방 단면적 상한선
+              "110"
+            ],
+            "lower_limit_od": [ // 내장지방 단면적 하한선
+              "90"
+            ],
+            "upper_limit_bcm": [  // 체세포량 상한선
+              "41.1"
+            ],
+            "lower_limit_bcm": [  // 체세포량 하한선
+              "33.7"
+            ],
+            "upper_limit_bmc": [  // 골무기질량 상한선
+              "3.53"
+            ],
+            "lower_limit_bmc": [  // 골무기질량 하한선
+              "2.89"
+            ],
+            "upper_limit_fat": [  // 체지방량 상한선
+              "16.2"
+            ],
+            "lower_limit_fat": [  // 체지방량 하한선
+              "8.1"
+            ],
+            "upper_limit_bmr": [  // 기초대사량 상한선
+              "1923"
+            ],
+            "lower_limit_bmr": [  // 기초대사량 하한선
+              "1641"
+            ],
+            "upper_limit_tbw": [  // 체수분 상한선
+              "46.3"
+            ],
+            "lower_limit_tbw": [  // 체수분 하한선
+              "37.9"
+
+            ],
+            "upper_limit_ffm": [  // 지방을 제외한 무게 상한선
+              "63.0"
+            ],
+            "lower_limit_ffm": [  // 지방을 제외한 무게 하한선
+              "51.5"
+            ],
+            "upper_limit_slm": [  // 근육량 상한선
+              "59.5"
+            ],
+            "lower_limit_slm": [  // 근육량 하한선
+              "48.7"
+            ],
+            "upper_limit_2_bmi": [
+              "0.0"
+            ],
+            "nutrition_evaluation_protein": [ // 영양 평가 단백질
+              "1"
+            ],
+            "nutrition_evaluation_minerals": [  // 영양 평가 무기질
+              "1"
+            ],
+            "nutrition_evaluation_body_fat": [  // 영양 평가 체지방
+              "2"
+            ],
+            "obesity_evaluation_bmi": [ // 비만 평가 BMI
+              "3"
+            ],
+            "obesity_evaluation_pbf": [ // 비만 평가 체지방률
+              "3"
+            ],
+            "body_balance_evaluation_upper": [  // 상체 균형 평가
+              "0"
+            ],
+            "body_balance_evaluation_lower": [  // 하체 균형 평가
+              "0"
+            ],
+            "body_balance_evaluation_upper_lower": [  // 상하체 균형 평가
+              "0"
+            ],
+            "target_weight": [  // 목표 체중
+              "67.30"
+            ],
+            "weight_control": [ // 체중조절
+              "-9.6"
+            ],
+            "fat_control": [  // 지방조절
+              "-12.0"
+            ],
+            "muscle_control": [ // 근육조절
+              "2.4"
+            ],
+            "inbody_score": [ // 인바디 점수
+              "66"
+            ],
+            "smi_": [ // smi
+              "7.8"
+            ],
+            "segmental_circumference_neck": [ // 목 둘레
+              "36.3"
+            ],
+            "segmental_circumference_chest": [  // 가슴 둘레
+              "96.3"
+            ],
+            "segmental_circumference_abdomen": [  // 복부 둘레
+              "89.4"
+            ],
+            "segmental_circumference_hip": [  // 엉덩이 둘레
+              "100.5"
+            ],
+            "segmental_circumference_right_arm": [  // 오른팔 둘레
+              "31.5"
+            ],
+            "segmental_circumference_left_arm": [ // 왼팔 둘레
+              "31.4"
+            ],
+            "segmental_circumference_right_thigh": [  // 오른 허벅지 둘레
+              "55.6"
+            ],
+            "segmental_circumference_left_thigh": [ // 왼 허벅지 둘레
+              "55.7"
+            ],
+            "measured_muscle_circumference_of_right_arm": [ // 오른팔 근육 둘레 측정값
+              "27.4"
+            ],
+            "measured_muscle_circumference_of_chest": [ // 가슴 둘레 측정값
+              "90.4"
+            ],
+            "measured_muscle_circumference_of_hip": [ // 엉덩이 근육 둘레 측정값
+              "82.3"
+            ],
+            "measured_muscle_circumference_of_right_thigh": [ // 오른 허벅지 근육 둘레 측정값
+              "48.7"
+            ],
+            "measured_muscle_circumference_of_left_thigh": [  // 왼허벅지 근육 둘레 측정값
+              "48.7"
+            ],
+            "measured_fat_thickness_of_right_arm": [  // 오른팔 지방 두께 측정값
+              "0.7"
+            ],
+            "measured_fat_thickness_of_left_thigh": [ // 왼허벅지  지방 두께 측정값
+              "1.1"
+            ],
+            "measured_fat_thickness_of_left_arm": [ // 왼팔 지방 두께 측정값
+              "0.7"
+            ],
+            "measured_fat_thickness_of_chest": [  // 가슴 지방 두께 측정값
+              "0.9"
+            ],
+            "measured_fat_thickness_of_abdomen": [  // 복부 지방 두께 측정값
+              "1.1"
+            ],
+            "measured_fat_thickness_of_right_thigh": [  // 오른 허벅지 지방 두께 측정값
+              "1.1"
+            ],
+            "growth_score": [ // 성장점수
+              "66"
+            ],
+            "obesity_degree_of_a_child": [  // 어린이 비만도
+              "118"
+            ],
+            "obesity_degree": [ // 비만도
+              "114"
+            ],
+            "recommended_energy": [ // 권장 에너지
+              "2311.0"
+            ],
+            "systolic": [ // 수축기 혈압
+              "0"
+            ],
+            "diastolic": [  // 이완기 혈압
+              "0"
+            ],
+            "pulse": [  // 맥박
+              "0"
+            ],
+            "mean_artery_pressure": [ // 평균 동맥압
+              "0"
+            ],
+            "pulse_pressure": [ // 맥압
+              "0"
+            ],
+            "rate_pressure_product": [  // 압력-맥박 곱
+              "0"
+            ],
+            "lower_limit_lean_mass_ra": [ // 오른팔 근육량 하한선
+              "2.73"
+            ],
+            "upper_limit_lean_mass_ra": [ // 오른팔 근육량 상한선
+              "3.69"
+            ],
+            "lower_limit_lean_mass_tr": [ // 몸통 근육량 하한선
+              "23.0"
+            ],
+            "upper_limit_lean_mass_tr": [ // 몸통 근육량 상한선
+              "28.2"
+            ],
+            "lower_limit_lean_mass_rl": [ // 오른다리 근육량 하한선
+              "8.02"
+            ],
+            "upper_limit_lean_mass_rl": [ // 오른다리 근육량 상한선
+              "9.80"
+            ],
+            "ffmi": [ // 체지방을 제외한 무게 지수
+              "17.9"
+            ],
+            "fmi": [  // 체지방량 지수
+              "7.2"
+            ],
+            "whole_body_phase_angle_50khz": [ // 전신 위상각 50khz
+              "5.9"
+            ],
+            "impedance_check": [
+              "000/000/000"
+            ]
+          }
+        }
+        ````
+      fail: |
+        환자 검색 실패

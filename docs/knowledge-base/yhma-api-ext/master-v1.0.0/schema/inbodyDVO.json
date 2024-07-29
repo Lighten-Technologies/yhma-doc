@@ -1,0 +1,18 @@
+{
+  "_id": "string",
+  "pat_id": "string",
+  "inbody_type": "string",
+  "data_type": "inbody/inbody",
+  "data": [
+    "string",
+    "string",
+    ...
+  ],
+  "data_label": [
+    "string",
+    "string",
+    ...
+  ],
+  "createdAt": "YYYY-MM-DD HH:mm:ss",
+  "editBy": "string"
+}

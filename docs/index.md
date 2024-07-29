@@ -33,25 +33,11 @@ TODO 태그가 붙은 문서는 아직 작성이 되지 않은 문서 입니다.
 ### sample
 
 ```json
+// http 요청의 데이터 부분이 모두 암호화 되어 전송됩니다.
 {
-  "_id": "ObjectId('6576beb21e25a258a6c9ac2d')",
-  "pat_email": "waeGxKqYlNs99iwUVSKgbhQofnSd8MUq-NhelTzripA7bbd8NUmGfvhjrgjXSw==",
-  "updatedAt": "dObbkOrdY0T4KzegZsb6A6PGmFdhB8NBxvFZB_t18dIP6XIHv0nW4MteJEEHpb9_jKgThYDr",
-  "pat_address": "WdKfkf2A7vcXW-_eMWPf8jzqAGYnHh11kLe-VSoEGf2xzvQRyOjfgEsXlDegXZk9WHDace544KE7nnU=",
-  "weight": "",
-  "createdAt": "VlI6G3VLK7lS_hyRGtSj_0XfR3B5iysnMhYUrh_hGBo2VaquhcOOU0oxjSa9IBo=",
-  "pat_private_confirm": "",
-  "pat_password": "sAPrM2hdygqkVS_JykHOGKGWWePGZxDvOSbX68seowwneQNfrGacD6mw9KPsJ-GuphcVM-Ku1KWF49QG34BoZEcl_c2hqQVB",
-  "loginedAt": "",
-  "pat_id": "asd",
-  "editBy": "CiJ8XdzZm4_Xg5F_xoKEeeJ-4Qi6k0QNIomDF9-cTks=",
-  "pat_name": "uHhwd6lP7-lN1XXzeH29lhC-mPqbkoeQhLcsIQ9BkivuJ0trcg==",
-  "isReport": "8fAN_xkxMwsR048lt8Ri1dCO3EllHzlXr5ZAy5inQ8Y=",
-  "height": "",
-  "pat_private_confirm_date": "Ve6O0-8pvjCzgY_PlBQ4Q1r1wDa7ebXSL2t9_AGtk91BK8zoYxs=",
-  "pat_phone": "nL-7fmiJ5iYbZVFuO_bAr29aIonBh_LFQAntWBjmhrkfb9JzIDRr",
-  "pat_sex": "S0xjfXDUFFOUUEUTe2U6YMn8hTWbrhv7AqKYtco=",
-  "pat_birth": "RPsi5K6D_eUIrvMXEr4GcQqsicNrTWbv5h04lxE4-h_jMI7Gq1E="
+  "responseTime": "2024-07-29 15:36:22",
+  "message": "patientList",
+  "data": "ysSp5wNp07RF8OMFskGHDKA1Q9mGdcDfWnPqVrq4AzSdVlAJCLxJdRwKFCA0XT57j6r0UERB0s7dh7Hp4GunQN4po0wIGrwKwUoFMXvk9Nj5zrf/5BVKhAzRAFCxy5ouVlAnYVWIDjWNk07+awkIS5ec5GvTz35eCP6i0d5jMs9sypR1tpdcr/lmPW/SJEufLddnxatFP5f3Y4Y4h7XSvSp7IlRm9+BIGTTbQ+bPl1HaeiEbgOmLnfZcXRMO0rOlIXqdYpS0NAzad2PYGxQvaIgGNiiTL0DjRwtxYuZU+z4fcbxtYOWFcfhT9D8ZKOUg9OXOatflTGpvP8C7jfQx0sE1z6Sr/+HyxM4vSpN1dq7YFme3AQKvzGIkLDmTFjVMtPymJeYScDlcKf8RyVHywPbcvJOd9EXrBkjhjBSxO2UrfiVYxyOaE8sLc2DWpqQmzRt+d1mS2tHhHoMZG27p1W5FYObGUBPAu3zafEefiTZ84aOlnWjU+S0aKtTyaeU9uITfcQmQaNbAhu0kOwwmhXGYEG8hm399sfjScAYFPt3M1GZl5e4Dw0UZo8lHsfqv3tP28sipFbolLn1SrvVTX1Z1pybQVo7HYNqpqOPH6P2ZkIDmckYclHP+NDb0BZr3YUsc5XGoUTINo9ad7jY9uocqlV3FRv0OFL6iqJ4ekVFfiBFkdfvBCe5gu7kk2BGB0FwrNjBfWUA="
 }
 ```
 
@@ -86,128 +72,60 @@ aes_encrypt(aes_key, '암호화할 데이터')
 aes_decrypt(aes_key, '복호화할 데이터')
 ```
 
-### Java
+### JavaScript
 
-```java
-import java.security.SecureRandom;
-import java.security.MessageDigest;
-import java.util.Arrays;
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.GCMParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-import android.util.Base64;
+```javascript
+const crypto = require("crypto");
 
-public class AESUtil {
+const aesKey = crypto.createHash("sha256").update("yhma-lighten").digest();
 
-    private static final String AES_ALGORITHM = "AES/GCM/NoPadding";
-    private static final String CHARSET_NAME = "UTF-8";
-    private static final String SECRET_KEY = "암호화 키";
-    private static final int IV_LENGTH = 12; // 12바이트 길이의 초기 벡터
-    private static final int TAG_LENGTH_BIT = 128;
+function aesEncrypt(data) {
+  // Generate a random IV
+  const iv = crypto.randomBytes(12);
 
-    private static SecretKeySpec generateKey(String secret) throws Exception {
-        MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        byte[] bytes = secret.getBytes(CHARSET_NAME);
-        digest.update(bytes, 0, bytes.length);
-        byte[] key = digest.digest();
-        return new SecretKeySpec(key, "AES");
-    }
+  // Create an AES-GCM cipher with the encryption key and IV
+  const cipher = crypto.createCipheriv("aes-256-gcm", aesKey, iv);
 
-    public static String encrypt(String data) throws Exception {
-        SecretKeySpec keySpec = generateKey(SECRET_KEY);
-        byte[] iv = new byte[IV_LENGTH];
-        new SecureRandom().nextBytes(iv);
-        GCMParameterSpec gcmSpec = new GCMParameterSpec(TAG_LENGTH_BIT, iv);
+  // Encrypt the data
+  let encryptedData = cipher.update(data, "utf-8");
+  encryptedData = Buffer.concat([encryptedData, cipher.final()]);
 
-        Cipher cipher = Cipher.getInstance(AES_ALGORITHM);
-        cipher.init(Cipher.ENCRYPT_MODE, keySpec, gcmSpec);
-        byte[] encryptedData = cipher.doFinal(data.getBytes(CHARSET_NAME));
-        byte[] encryptedIVAndData = new byte[IV_LENGTH + encryptedData.length];
-        System.arraycopy(iv, 0, encryptedIVAndData, 0, IV_LENGTH);
-        System.arraycopy(encryptedData, 0, encryptedIVAndData, IV_LENGTH, encryptedData.length);
+  // Get the authentication tag
+  const tag = cipher.getAuthTag();
 
-        return Base64.encodeToString(encryptedIVAndData, Base64.NO_WRAP);
-    }
+  // Concatenate IV, tag, and ciphertext
+  const encryptedBuffer = Buffer.concat([iv, tag, encryptedData]);
 
-    public static String decrypt(String encryptedData) throws Exception {
-        SecretKeySpec keySpec = generateKey(SECRET_KEY);
-        byte[] encryptedIVAndData = Base64.decode(encryptedData, Base64.NO_WRAP);
+  // Return the encrypted data as a Base64 URL-safe string
+  return encryptedBuffer.toString("base64");
+}
 
-        byte[] iv = Arrays.copyOfRange(encryptedIVAndData, 0, IV_LENGTH);
-        byte[] data = Arrays.copyOfRange(encryptedIVAndData, IV_LENGTH, encryptedIVAndData.length);
+function aesDecrypt(encryptedData) {
+  // Base64 URL-safe decoding
+  const encryptedBuffer = Buffer.from(encryptedData, "base64");
 
-        GCMParameterSpec gcmSpec = new GCMParameterSpec(TAG_LENGTH_BIT, iv);
+  // Separate the IV, tag, and ciphertext
+  const iv = encryptedBuffer.slice(0, 12);
+  const tag = encryptedBuffer.slice(12, 28);
+  const ciphertext = encryptedBuffer.slice(28);
 
-        Cipher cipher = Cipher.getInstance(AES_ALGORITHM);
-        cipher.init(Cipher.DECRYPT_MODE, keySpec, gcmSpec);
-        byte[] decryptedData = cipher.doFinal(data);
+  // Create an AES-GCM decipher with the encryption key and IV
+  const decipher = crypto.createDecipheriv("aes-256-gcm", aesKey, iv);
+  decipher.setAuthTag(tag);
 
-        return new String(decryptedData, CHARSET_NAME);
-    }
+  // Decrypt the data
+  let decryptedData = decipher.update(ciphertext);
+  decryptedData = Buffer.concat([decryptedData, decipher.final()]);
+
+  // Return the decrypted data as a UTF-8 string
+  return decryptedData.toString("utf-8");
 }
 ```
 
 ### Kotlin
 
 ```kotlin
-import android.util.Base64
-import java.nio.charset.StandardCharsets
-import java.security.MessageDigest
-import javax.crypto.Cipher
-import javax.crypto.KeyGenerator
-import javax.crypto.SecretKey
-import javax.crypto.spec.GCMParameterSpec
-import javax.crypto.spec.SecretKeySpec
 
-object AESUtil {
-    private const val AES_ALGORITHM = "AES/GCM/NoPadding"
-    private const val CHARSET_NAME = "UTF-8"
-    private const val IV_LENGTH = 12
-    private const val TAG_LENGTH_BIT = 128
-    private const val SECRET_KEY = "your_fixed_key"
-
-    private fun generateKey(secret: String): SecretKey {
-        val digest = MessageDigest.getInstance("SHA-256")
-        val bytes = secret.toByteArray(StandardCharsets.UTF_8)
-        digest.update(bytes, 0, bytes.size)
-        val key = digest.digest()
-        return SecretKeySpec(key, "AES")
-    }
-
-    fun encrypt(data: String): String {
-        val key = generateKey(SECRET_KEY)
-        val iv = ByteArray(IV_LENGTH)
-        SecureRandom().nextBytes(iv)
-        val gcmSpec = GCMParameterSpec(TAG_LENGTH_BIT, iv)
-
-        val cipher = Cipher.getInstance(AES_ALGORITHM)
-        cipher.init(Cipher.ENCRYPT_MODE, key, gcmSpec)
-        val encryptedData = cipher.doFinal(data.toByteArray(StandardCharsets.UTF_8))
-        val encryptedIVAndData = ByteArray(IV_LENGTH + encryptedData.size)
-        System.arraycopy(iv, 0, encryptedIVAndData, 0, IV_LENGTH)
-        System.arraycopy(encryptedData, 0, encryptedIVAndData, IV_LENGTH, encryptedData.size)
-
-        return Base64.encodeToString(encryptedIVAndData, Base64.NO_WRAP)
-    }
-
-    fun decrypt(encryptedData: String): String {
-        val key = generateKey(SECRET_KEY)
-        val encryptedIVAndData = Base64.decode(encryptedData, Base64.NO_WRAP)
-
-        val iv = encryptedIVAndData.copyOfRange(0, IV_LENGTH)
-        val data = encryptedIVAndData.copyOfRange(IV_LENGTH, encryptedIVAndData.size)
-
-        val gcmSpec = GCMParameterSpec(TAG_LENGTH_BIT, iv)
-
-        val cipher = Cipher.getInstance(AES_ALGORITHM)
-        cipher.init(Cipher.DECRYPT_MODE, key, gcmSpec)
-        val decryptedData = cipher.doFinal(data)
-
-        return String(decryptedData, StandardCharsets.UTF_8)
-    }
-}
 
 ```
 
@@ -215,102 +133,75 @@ object AESUtil {
 
 ```swift
 import Foundation
-import CommonCrypto
+import CryptoKit
 
-class AESUtil {
-    static let secretKey = "암호화 키"
-    static let ivLength = 12
+struct AESUtil {
 
-    static func generateKey(from password: String) -> Data {
-        let passwordData = password.data(using: .utf8)!
-        var key = Data(count: kCCKeySizeAES256)
-        _ = key.withUnsafeMutableBytes { keyBytes in
-            passwordData.withUnsafeBytes { passwordBytes in
-                CCKeyDerivationPBKDF(
-                    CCPBKDFAlgorithm(kCCPBKDF2),
-                    password, password.count,
-                    nil, 0,
-                    CCPseudoRandomAlgorithm(kCCPRFHmacAlgSHA256),
-                    10000,
-                    keyBytes.bindMemory(to: UInt8.self).baseAddress!,
-                    kCCKeySizeAES256
-                )
-            }
+    private static let keyString = "암호화 키"
+    private static let symmetricKey: SymmetricKey = generateSymmetricKey(from: keyString)
+
+    static func decrypt(encryptedString: String) throws -> String {
+        guard let combinedData = Data(base64URL: encryptedString) else {
+            throw DecryptionError.invalidBase64String
         }
-        return key
+
+        guard combinedData.count >= 28 else {
+            throw DecryptionError.invalidDataLength
+        }
+
+        let nonceData = combinedData.prefix(12)
+        let tag = combinedData.subdata(in: 12..<28)
+        let ciphertext = combinedData.suffix(from: 28)
+
+        let nonce: AES.GCM.Nonce
+        do {
+            nonce = try AES.GCM.Nonce(data: nonceData)
+        } catch {
+            throw DecryptionError.nonceCreationError(error)
+        }
+
+        do {
+            let sealedBox = try AES.GCM.SealedBox(nonce: nonce, ciphertext: ciphertext, tag: tag)
+            let decryptedData = try AES.GCM.open(sealedBox, using: symmetricKey)
+            return String(data: decryptedData, encoding: .utf8) ?? ""
+        } catch {
+            throw DecryptionError.decryptionError(error)
+        }
     }
 
-    static func encrypt(_ data: String) -> String? {
-        let key = generateKey(from: secretKey)
-        var iv = Data(count: ivLength)
-        _ = iv.withUnsafeMutableBytes { SecRandomCopyBytes(kSecRandomDefault, ivLength, $0.baseAddress!) }
-
-        let dataToEncrypt = data.data(using: .utf8)!
-        var encryptedData = Data(count: dataToEncrypt.count + kCCBlockSizeAES128)
-        var numBytesEncrypted: size_t = 0
-
-        let cryptStatus = key.withUnsafeBytes { keyBytes in
-            iv.withUnsafeBytes { ivBytes in
-                dataToEncrypt.withUnsafeBytes { dataBytes in
-                    encryptedData.withUnsafeMutableBytes { encryptedBytes in
-                        CCCrypt(
-                            CCOperation(kCCEncrypt),
-                            CCAlgorithm(kCCAlgorithmAES),
-                            CCOptions(kCCOptionPKCS7Padding),
-                            keyBytes.baseAddress!, kCCKeySizeAES256,
-                            ivBytes.baseAddress!,
-                            dataBytes.baseAddress!, dataToEncrypt.count,
-                            encryptedBytes.baseAddress!, encryptedData.count,
-                            &numBytesEncrypted
-                        )
-                    }
-                }
-            }
-        }
-
-        guard cryptStatus == kCCSuccess else {
-            return nil
-        }
-
-        encryptedData.removeSubrange(numBytesEncrypted..<encryptedData.count)
-        let ivAndEncryptedData = iv + encryptedData
-        return ivAndEncryptedData.base64EncodedString()
+    private static func generateSymmetricKey(from input: String) -> SymmetricKey {
+        let inputData = input.data(using: .utf8)!
+        let hashed = SHA256.hash(data: inputData)
+        return SymmetricKey(data: Data(hashed))
     }
 
-    static func decrypt(_ encryptedData: String) -> String? {
-        let key = generateKey(from: secretKey)
-        let encryptedData = Data(base64Encoded: encryptedData)!
-        let iv = encryptedData.prefix(ivLength)
-        let dataToDecrypt = encryptedData.dropFirst(ivLength)
-
-        var decryptedData = Data(count: dataToDecrypt.count + kCCBlockSizeAES128)
-        var numBytesDecrypted: size_t = 0
-
-        let cryptStatus = key.withUnsafeBytes { keyBytes in
-            iv.withUnsafeBytes { ivBytes in
-                dataToDecrypt.withUnsafeBytes { dataBytes in
-                    decryptedData.withUnsafeMutableBytes { decryptedBytes in
-                        CCCrypt(
-                            CCOperation(kCCDecrypt),
-                            CCAlgorithm(kCCAlgorithmAES),
-                            CCOptions(kCCOptionPKCS7Padding),
-                            keyBytes.baseAddress!, kCCKeySizeAES256,
-                            ivBytes.baseAddress!,
-                            dataBytes.baseAddress!, dataToDecrypt.count,
-                            decryptedBytes.baseAddress!, decryptedData.count,
-                            &numBytesDecrypted
-                        )
-                    }
-                }
-            }
-        }
-
-        guard cryptStatus == kCCSuccess else {
-            return nil
-        }
-
-        decryptedData.removeSubrange(numBytesDecrypted..<decryptedData.count)
-        return String(data: decryptedData, encoding: .utf8)
+    enum DecryptionError: Error {
+        case invalidBase64String
+        case invalidDataLength
+        case nonceCreationError(Error)
+        case decryptionError(Error)
+        case invalidData
     }
 }
+
+
+extension Data {
+    init?(base64URL: String) {
+        let base64 = base64URL
+            .replacingOccurrences(of: "-", with: "+")
+            .replacingOccurrences(of: "_", with: "/")
+
+        let padLength = (4 - base64.count % 4) % 4
+        let paddedBase64 = base64 + String(repeating: "=", count: padLength)
+
+        self.init(base64Encoded: paddedBase64)
+    }
+}
+
+extension String {
+    static func decrypt(encryptedString: String) throws -> String {
+        return try AESUtil.decrypt(encryptedString: encryptedString)
+    }
+}
+
 ```

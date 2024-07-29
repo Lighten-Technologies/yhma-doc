@@ -1,0 +1,118 @@
+endpoints:
+  - method: GET
+    path: "/api/yonsei/mezoo/hiCardi/v1/patient"
+    name: ecg 데이터 가져오기
+    description: |
+      해당 환자의 ecg 데이터를 가져옵니다
+    request:
+      requestDescription:
+      requestHeaders:
+      requestParams:
+        patId:
+          type: string
+          m/o: mandatory
+          description: 검색을 원하는 환자아이디를 입력하세요.
+        id:
+          type: string
+          m/o: optional
+          description: 검색을 원하는 ecg아이디를 입력하세요. 
+      requestBody:
+    response:
+      success: |
+        ecg 데이터를 가져왔습니다.
+        ````json
+        {
+          "responseTime": "2024-07-01 14:07:30",
+          "message": "Get ecg data",
+          "data": [
+            {
+              "_id": "6535f2be9a3c9e13fae66961",
+              "pat_id": "asd",
+              "createdAt": "2023-10-23T04:31:43.000Z",
+              "bpm": "82",
+              "temp": "311",
+              "rhythmArrhythmiaInfo": "0",
+              "beatArrhythmiaInfo": "0",
+              "data": [
+                {
+                  "packetCount": 3899,
+                  "heartRate": null,
+                  "respirationRate": null,
+                  "temperature": null,
+                  "batteryPercentage": null,
+                  "motionStatus": null,
+                  "apnea": null,
+                  "leadFail": null,
+                  "rhythmArrhythmiaInfo": null,
+                  "beatArrhythmiaInfo": 0,
+                  "rPeak": 1,
+                  "ecg": [42, ...],
+                  "respiration": [-2988, -2897, -2785, -2657, -2516]
+                },
+                ...
+              ],
+              "patient": [
+                {
+                  "_id": "65a0d88bcdab3b3e402d6abe",
+                  "pat_id": "asd",
+                  "pat_name": "김현석",
+                  "pat_sex": "M",
+                  "pat_birth": "1991-03-06",
+                  "pat_email": "asd@gmail.com",
+                  "pat_phone": "01012345678",
+                  "pat_address": "강원특별자치도 강릉시",
+                  "pat_password": "U2FsdGVkX19T0i+NRr7y6CqemC1LnfSYpjoF1oOYFC0=",
+                  "editBy": null,
+                  "isReport": true,
+                  "pat_private_confirm_date": "2024-01-12",
+                  "loginedAt": "2024-07-01 11:01:01",
+                  "createdAt": "2024-01-12 15:13:31",
+                  "updatedAt": "2024-04-18T06:36:45.530Z"
+                }
+              ]
+            }
+          ]
+        }
+        ````
+      fail: |
+        환자가 존재하지 않으면, 검색 실패를 리턴한다.
+
+  - method: GET
+    path: "/api/yonsei/mezoo/hiCardi/v1/patient/thumbnail"
+    name: ecg 썸네일 가져오기
+    description: |
+      해당 환자의 ecg 썸네일을 가져옵니다
+    request:
+      requestDescription:
+      requestHeaders:
+      requestParams:
+        patId:
+          type: string
+          m/o: mandatory
+          description: 검색을 원하는 아이디를 입력하세요.
+      requestBody:
+    response:
+      success: |
+        ecg 썸네일을 가져왔습니다.
+        ````json
+        {
+          "responseTime": "2024-07-01 13:59:52",
+          "message": "Ecg Thumbnail of Pat_ID asd",
+          "data": [
+            {
+              "_id": "6535f2be9a3c9e13fae66961",
+              "pat_id": "asd",
+              "createdAt": "2023-10-23T04:31:43.000Z",
+              "bpm": "82",
+              "temp": "311",
+              "rhythmArrhythmiaInfo": "0",
+              "beatArrhythmiaInfo": "0",
+              "data_type": "mezoo/hiCardi",
+              "editBy": "asd"
+            },
+            ...
+          ]
+        }
+        ````
+      fail: |
+        ecg 검색 실패

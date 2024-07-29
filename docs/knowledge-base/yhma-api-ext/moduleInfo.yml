@@ -1,0 +1,6 @@
+module: yhma-api-ext
+summary: 연세대학교 건강부스 외부용 api
+author: 김민제 선임
+description: |
+  http Response의 Data 부분이 모두 암호화 되어 리턴된다.
+  자세한 사항은 메인 페이지 내용을 참조한다.
